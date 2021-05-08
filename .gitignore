@@ -27,7 +27,7 @@ yarn-error.log*
 .idea
 **/node_modules/*
 **/.firebase
-**/.firebase.js
+
 **/.firebaserc
 firebase/
 **/.runtimeconfig.json
