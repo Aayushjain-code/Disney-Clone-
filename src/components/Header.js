@@ -26,13 +26,26 @@ const Header = (props) => {
    }, [userName]);
 
    const handleAuth = () => {
-      auth.signInWithPopup(provider)
-         .then((result) => {
-            setUser(result.user);
-         }).catch((error) => {
-            alert(error.message);
-         });
-   }
+      if (!userName) {
+         auth
+            .signInWithPopup(provider)
+            .then((result) => {
+               setUser(result.user);
+            })
+            .catch((error) => {
+               alert(error.message);
+            });
+      } else if (userName) {
+         auth
+            .signOut()
+            .then(() => {
+               dispatch(setSignOutState());
+               history.push("/");
+            })
+            .catch((err) => alert(err.message));
+      }
+   };
+
 
 
    const setUser = (user) => {
@@ -80,12 +93,14 @@ const Header = (props) => {
                      <span>SERIES</span>
                   </a>
                </NavMenu>
+               {/* signout added here */}
                <SignOut>
                   <UserImg src={userPhoto} alt={userName} />
                   <DropDown>
                      <span onClick={handleAuth}>Sign out</span>
                   </DropDown>
                </SignOut>
+               {/* signout  */}
             </>
          )}
       </Nav>
@@ -194,11 +209,11 @@ const Login = styled.a`
     border-color: transparent;
   }
 `;
-
+{/* signout added here */ }
 const UserImg = styled.img`
   height: 100%;
 `;
-
+{/* signout added here */ }
 const DropDown = styled.div`
   position: absolute;
   top: 48px;
@@ -213,7 +228,7 @@ const DropDown = styled.div`
   width: 100px;
   opacity: 0;
 `;
-
+{/* signout added here */ }
 const SignOut = styled.div`
   position: relative;
   height: 48px;
@@ -234,5 +249,5 @@ const SignOut = styled.div`
     }
   }
 `;
-
+{/* signout  */ }
 export default Header;
