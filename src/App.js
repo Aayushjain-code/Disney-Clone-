@@ -10,12 +10,15 @@ function App() {
       <Router>
         <Header />
         <Switch>
+
           <Route exact path='/'>
             <Login />
-            <Route path='/home'>
-              <Home />
-            </Route>
           </Route>
+
+          <Route path='/home'>
+            <Home />
+          </Route>
+
         </Switch>
       </Router>
     </div>
