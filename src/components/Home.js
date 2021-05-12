@@ -5,8 +5,7 @@ import ImgSlider from "./ImgSlider";
 const Home = (props) => {
   return (
     <Container>
-      <h2>hello</h2>
-      <h2>hello</h2>
+
       <ImgSlider />
 
     </Container>
@@ -34,4 +33,3 @@ const Container = styled.main`
 `;
 
 export default Home;
-
